@@ -1,0 +1,41 @@
+/*----------------------------------------------------------------------------*/
+/*                                                                            */
+/*    Module:       main.cpp                                                  */
+/*    Author:       C:\Users\mattw                                            */
+/*    Created:      Thu Sep 02 2021                                           */
+/*    Description:  V5 project                                                */
+/*                                                                            */
+/*----------------------------------------------------------------------------*/
+
+// ---- START VEXCODE CONFIGURED DEVICES ----
+// Robot Configuration:
+// [Name]               [Type]        [Port(s)]
+// Motor1               motor         1               
+// Motor10              motor         10              
+// RangeFinderE         sonar         E, F            
+// BumperC              bumper        C               
+// LineTrackerA         line          A               
+// Motor8               motor         8               
+// ---- END VEXCODE CONFIGURED DEVICES ----
+
+#include "vex.h"
+#include <iostream>
+
+using namespace vex;
+using namespace std;
+
+int main() {
+  // Initializing Robot Configuration. DO NOT REMOVE!
+  vexcodeInit();
+
+  while(!BumperC.pressing()){
+    task::sleep(250);
+    Motor8.spin(fwd, 20, rpm);
+    cout << BumperC.pressing() << endl;
+    cout << Motor8.position(degrees) << endl;
+  }
+  Motor8.stop();
+  Motor8.setPosition(0,degrees);
+  cout << Motor8.position(degrees) << endl;
+  return 0;
+}
