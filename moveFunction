@@ -1,0 +1,16 @@
+bool moveForward(double distance, double diameter){
+   motor1.startRotateFor((distance*5/(diameter*M_PI)), rev, 80, rpm);
+   motor10.startRotateFor((distance*5/(diameter*M_PI)), rev, 80, rpm);
+   while(lineTrackerA.reflectivity() > 15){
+     task::sleep(150);
+     cout << lineTrackerA.reflectivity() << endl;
+     if (lineTrackerA.reflectivity() < 10){
+       motor1.stop();
+       motor10.stop();
+       return false;
+     }
+   }
+  motor1.stop();
+  motor10.stop();
+  return true;
+  };
